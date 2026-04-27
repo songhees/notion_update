@@ -1,0 +1,893 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>ClaudeCode</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="343ae9fa-8352-8088-bbfe-cafe676f129e" class="page sans"><header><h1 class="page-title" dir="auto">ClaudeCode</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="ltr"><figure id="34fae9fa-8352-809e-ba67-e7a2170c3705" class="link-to-page"><a href="https://www.notion.so/SDK-34fae9fa8352809eba67e7a2170c3705?pvs=21">SDK</a></figure></div><div style="display:contents" dir="ltr"><figure id="344ae9fa-8352-8029-9a0c-ec78cf2c9d13" class="link-to-page"><a href="https://www.notion.so/344ae9fa835280299a0cec78cf2c9d13?pvs=21">토큰 절약</a></figure></div><div style="display:contents" dir="ltr"><figure id="345ae9fa-8352-8010-9856-f00a81b29c7d" class="link-to-page"><a href="https://www.notion.so/345ae9fa835280109856f00a81b29c7d?pvs=21">서브 에이전트</a></figure></div><div style="display:contents" dir="ltr"><figure id="345ae9fa-8352-8084-96a0-c59b0d1713ea" class="link-to-page"><a href="https://www.notion.so/MCP-345ae9fa8352808496a0c59b0d1713ea?pvs=21">MCP</a></figure></div><div style="display:contents" dir="ltr"><figure id="348ae9fa-8352-80d5-a29e-e08787b8351f" class="link-to-page"><a href="https://www.notion.so/348ae9fa835280d5a29ee08787b8351f?pvs=21">스킬</a></figure></div><div style="display:contents" dir="ltr"><figure id="34eae9fa-8352-80de-b5e4-c1a2131deae5" class="link-to-page"><a href="https://www.notion.so/Hook-34eae9fa835280deb5e4c1a2131deae5?pvs=21">Hook</a></figure></div><div style="display:contents" dir="auto"><h1 id="344ae9fa-8352-8002-ab36-e36e2b7d7002" class="block-color-orange">설치</h1></div><div style="display:contents" dir="auto"><hr id="344ae9fa-8352-80fe-a84d-e6424bb87319"/></div><div style="display:contents" dir="auto"><h3 id="344ae9fa-8352-806c-85d2-e72a6b7d1193" class="">terminal</h3></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-8054-b797-e29061a57989" class="">windows : irm https://claude.ai/install.ps1 | iex<div class="indented"><div style="display:contents" dir="auto"><p id="344ae9fa-8352-808c-81db-e2619a550676" class="">환경 변수 path에 C:\Users\osh48\.local\bin (claude.exe 경로)를 저장</p></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-8030-9b63-fbc3bafc0b26" class="">→ claude는 bash에 맞춰져 있으므로 wsl 이나 git bash를 사용해야 됨</p></div></div></p></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-8083-86c7-f1736178754b" class="">Linux : curl -fsSL https://claude.ai/install.sh | bash<div class="indented"><div style="display:contents" dir="auto"><p id="344ae9fa-8352-8043-8851-f0e866399a46" class="">window의 wsl이라면 한번더 설치해야됨</p></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-8063-9d91-e71bb4fa8bb0" class="">설치 경로 : ~/.local/bin/claude</p></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-8008-8bac-f217c0fe0083" class="">환경 변수 설정 : echo &#x27;export PATH=&quot;$HOME/.local/bin:$PATH&quot;&#x27; &gt;&gt; ~/.bashrc &amp;&amp; source ~/.bashrc</p></div></div></p></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-802a-bcb0-c54d7f585cb5" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="344ae9fa-8352-8088-9756-cd1aa13d1491" class="block-color-orange">명령어</h1></div><div style="display:contents" dir="auto"><hr id="344ae9fa-8352-8015-87f0-e87dc5319268"/></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-80de-9b64-c0b198d36250" class="">claude : 시작 명령어 ( 특정 폴더 위치에서 실행 )</p></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-80a4-b294-e06074d37ece" class="">exit : session 종료 ( = Ctrl+C  = /clear ) </p></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-8003-854a-c592cb67d2ea" class="">/btw : 클로드가 한창 코딩이나 리팩토링 작업을 수행 중일 때, 작업 흐름을 방해하지 않으면서 별도의 사이드 대화를 나눌 수 있는 기능</p></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-8036-9c69-d4e7863458e1" class="">/model : 사용하려는 모델 설정</p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-806f-8938-ec3427d00d9d" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="344ae9fa-8352-8050-b84e-f1ad73bb0312" class="block-color-orange">Claude Code 란</h1></div><div style="display:contents" dir="auto"><hr id="344ae9fa-8352-80d7-8178-da1b5126ac28"/></div><div style="display:contents" dir="auto"><blockquote id="348ae9fa-8352-80aa-b78b-e487fc6b4d4d" class="">Claude LLM 을 감싸서 코딩할 수 있는 환경을 제공하는 코딩 도구<div style="display:contents" dir="auto"><p id="348ae9fa-8352-80e5-80e6-ddecf3f0896f" class="">에이전트 기반 코딩 도구 → terminal agent loop, context 관리 창, 도구 및 구성 권한 등 </p></div><div style="display:contents" dir="auto"><p id="348ae9fa-8352-80b3-bb34-cfe8eda2ad13" class="">Claude와 달리 직접적으로 터미널과 파일, IDE 에 접속해 직접 작업을 처리할 수 있다.</p></div><div style="display:contents" dir="auto"><p id="348ae9fa-8352-809a-9680-dca4ff8e6454" class="">프롬프트 → 컨텍스트 수집 → 작업 수행 → 결과 검증</p></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-80bc-b2c4-c1604fc17ae6" class="">Claude code가 사용할 수 있는 <strong><a href="https://code.claude.com/docs/ko/tools-reference">도구</a></strong> (ex terminal, bash, file …)</p></div></blockquote></div><div style="display:contents" dir="auto"><ol type="1" id="343ae9fa-8352-80ac-a8db-e2554742ef8a" class="numbered-list" start="1"><li>코드베이스를 읽기</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="343ae9fa-8352-80ba-a1cf-ef921fe67d23" class="numbered-list" start="2"><li>파일을 편집</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="343ae9fa-8352-8022-8b3a-f1e8d232e769" class="numbered-list" start="3"><li>명령 실행</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="343ae9fa-8352-8077-8b63-e43b2415cb6d" class="numbered-list" start="4"><li>개발 도구와 통합</li></ol></div><div style="display:contents" dir="auto"><p id="343ae9fa-8352-80f0-9877-e13c86e10c52" class="">하는 에이전트 코딩 도구 / 코딩 어시스턴트</p></div><div style="display:contents" dir="auto"><p id="343ae9fa-8352-802a-8501-f7b4563e79e8" class="">terminal, IDE, 데스크톱 앱 및 브라우저에서 사용가능</p></div><div style="display:contents" dir="auto"><p id="348ae9fa-8352-802b-8b5e-c6a9686114d0" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="348ae9fa-8352-8098-b0d4-df888e8a33b5" class="">작동 방식</h3></div><div style="display:contents" dir="ltr"><figure id="348ae9fa-8352-80ee-b5b3-c26678b021c7" class="image"><a href="image.png"><img style="width:1033.984375px" src="image.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="348ae9fa-8352-804f-a5c9-eb0eb978c10e" class="">사용자의 명령(프롬프트)</p></div><div style="display:contents" dir="auto"><p id="348ae9fa-8352-803d-b502-e792d0c1d66b" class="">→ 프롬프트를 충족시키기 위한 context 수집 : claude code 가 상호작용 할 수 있는 텍스트 또는 도구 호출을 하는 모델과 상호 작용함으로써 이뤄진다.</p></div><div style="display:contents" dir="auto"><p id="348ae9fa-8352-8058-8591-d6a592cfbcce" class="">→ 조치를 취하기 : 파일 편집, 명령어 실행</p></div><div style="display:contents" dir="auto"><p id="348ae9fa-8352-8064-a787-cd04d0c8a7be" class="">→ 결과 검증 : 해당 결과가 프롬프트에서 의도한 바를 달성했는지 여부를 판단.<div class="indented"><div style="display:contents" dir="auto"><p id="348ae9fa-8352-807d-ad6b-c713424b4ec8" class="">달성 ⇒ 다음 프롬프트 대기</p></div><div style="display:contents" dir="auto"><p id="348ae9fa-8352-800c-a3ba-f8da370b08f7" class="">미달성 ⇒ 검증이 가능해질 때 까지 loop 를 돌면서 같은 과정을 반복한다. </p></div></div></p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80c0-b326-f85ea989cdea" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="348ae9fa-8352-80b2-9a1c-dec52f1cffb8" class=""><mark class="highlight-orange">Context</mark></h2></div><div style="display:contents" dir="auto"><hr id="349ae9fa-8352-80e7-ae4f-eb218c66960d"/></div><div style="display:contents" dir="auto"><blockquote id="348ae9fa-8352-8099-a0a4-d0ebc5bf076a" class="">claude의 작업 memory </blockquote></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-8081-a788-e1d4ee8c1002" class="">대화 내용, 파일 내용, 명령 출력 등을 저장하고 나중에 다시 볼 수 있다.<div class="indented"><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80c7-ab37-d79a12c35cee" class="">→ 저장할 수 있는 양이 정해져 있기 때문에 이를 최적화하는 것이 중요하다.</p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-8038-9229-c1d775567aa8" class="">→ 용량의 한계(95%)에 도달하면 자동 압축을 하나 품질이 상당히 저하<div class="indented"><div style="display:contents" dir="auto"><p id="349ae9fa-8352-808c-8023-c205b774510d" class="">중요한 세부 정보를 요약하고 불필요한 도구 호출 결과를 제거하여 공간을 확보</p></div></div></p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-809f-ab0e-fd8e1dff97be" class="">→ 단, 이전 대화 내용이 손실될 수 있다.</p></div></div></p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-806f-a90a-ccf40b3f9111" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="349ae9fa-8352-80eb-b94c-c48d4a5b4ce6" class="">명령어</h3></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-8012-99c6-c333ac6040c2" class="">/compact : context 압축 수동 명령어<div class="indented"><div style="display:contents" dir="auto"><p id="349ae9fa-8352-804d-b33f-c66885d90720" class="">60%일 때 수동으로 해주는 게 좋다.</p></div></div></p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80d4-a33d-d8f73ecaa607" class="">/context : 컨텍스트 상태 확인</p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-8038-bce4-f806aed7cfbe" class="">/clear : 컨텍스트 비우기</p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80d7-9737-c6557e71bed4" class="">Esc 두번 : 대화 되감기 → 이전 대화로 되돌릴 수 있다.<div class="indented"><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80cf-a6f5-cd30f945d0ae" class="">따라서 관련없는 대화 기록을 삭제</p></div></div></p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-801e-ab19-c61592ee4699" class="">
+</p></div><div style="display:contents" dir="auto"><p id="348ae9fa-8352-80d5-af43-e59326bf0b3a" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="348ae9fa-8352-8004-b90a-fb3ad8bc5c5e" class=""><mark class="highlight-orange">Mode</mark></h2></div><div style="display:contents" dir="auto"><hr id="349ae9fa-8352-8002-8f72-ed884790b5d3"/></div><div style="display:contents" dir="auto"><p id="348ae9fa-8352-8030-bcd5-e652d1de8a28" class="">shift + tab : 모드 전환 키</p></div><div style="display:contents" dir="auto"><p id="348ae9fa-8352-805d-a8ec-cfb5cc4c1a42" class="">accept edits on : 파일 편집, 생성을 자동으로 승인, but 명령어를 실행할 때는 권한 요청</p></div><div style="display:contents" dir="auto"><p id="348ae9fa-8352-809d-802e-eab235d3aa4a" class="">plan mode on :  <div class="indented"><div style="display:contents" dir="auto"><p id="349ae9fa-8352-800f-a71f-efbf7b04c434" class="">언제 사용? → 다양한 영역을 살펴보아야 하는 작업에 유용<div class="indented"><div style="display:contents" dir="auto"><p id="349ae9fa-8352-8049-bdcc-de6c426e79cf" class="">여러 단계를 거쳐 완료해야 하는 작업에도 유용</p></div></div></p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-8020-bffe-c6befd1e7366" class=""><mark class="highlight-red">추가적인 토큰이 든다.</mark></p></div></div></p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-8086-8f41-c11e12e376bf" class="">사고 기능 : <div class="indented"><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80fa-b9a5-cef6c21277eb" class="">언제 사용? → 까다로운 로직에 집중하거나, 어려운 버그를 해결할 때 사용</p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-8006-8be0-c816d6a3309e" class=""><mark class="highlight-red">추가적인 토큰이 든다.</mark></p></div></div></p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80bc-819c-c071cd4cef85" class="">
+</p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80a3-8fe6-eb75904222b5" class="">
+</p></div><div style="display:contents" dir="auto"><p id="348ae9fa-8352-80c3-8149-d4452f2b2a83" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="343ae9fa-8352-80d5-bfd6-ddff94f540ca" class=""><mark class="highlight-orange">CLAUDE.md</mark></h2></div><div style="display:contents" dir="auto"><hr id="349ae9fa-8352-80cb-bc0c-c14ccc4f50de"/></div><div style="display:contents" dir="auto"><blockquote id="349ae9fa-8352-803a-ad16-d368e6eb6afe" class="">프로젝트에 대해 영구적인 메모리를 갖는다.</blockquote></div><div style="display:contents" dir="auto"><p id="343ae9fa-8352-808f-8c19-ff205eb1a73f" class="">Claude code가 세션을 시작할 때마다 자동으로 읽는다.<div class="indented"><div style="display:contents" dir="auto"><p id="349ae9fa-8352-807d-9930-e8f44a01e927" class="">새 세션마다 리셋되는 기억을 잡아주는 파일</p></div></div></p></div><div style="display:contents" dir="auto"><p id="343ae9fa-8352-8098-a85c-ddb64f441c40" class="">컨택스트가 꽉 차도 이를 꼭 읽는다.</p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-807a-b556-e1265dffdcca" class="">
+</p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80ec-ae5f-f5edef49a0ec" class="">Project 위치의 Claude.md : project/Claude.md</p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-8051-9960-cbcf3689893b" class="">User 개인의 Claude.md : .claude/Claude.md<div class="indented"><div style="display:contents" dir="auto"><p id="349ae9fa-8352-8019-a6d1-f7c9abf6920d" class="">코드 주석같은 개인적인 설정은 여기에</p></div></div></p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80d4-a97b-d62b7ada7f26" class="">
+</p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80b0-82f1-c98093c1a97e" class="">참조할 문서가 있는 경우 (Skill)</p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80a6-9423-f6f54a9bf636" class="">@파일경로 로 사용</p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js" integrity="sha512-QXFMVAusM85vUYDaNgcYeU3rzSlc+bTV4JvkfJhjxSHlQEo+ig53BtnGkvFTiNJh8D+wv6uWAQ2vJaVmxe8d3w==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="349ae9fa-8352-8046-b3d7-e171bbbbaaa1" class="code code-wrap"><code class="language-json" style="white-space:pre-wrap;word-break:break-all">## README.md
+
+Please read if you need more info: @README.md</code></pre></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80d8-ade4-fa68754d8949" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="349ae9fa-8352-8097-87f8-c825f3b43e2a" class="">구성</h3></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80ce-8903-e17719ea7d6a" class="">사용할 기술 스택</p></div><div style="display:contents" dir="auto"><pre id="349ae9fa-8352-8026-8d5e-e393ade172ba" class="code code-wrap"><code class="language-json" style="white-space:pre-wrap;word-break:break-all"># Project
+
+This is a Next.js 15 app using the App Router, Tailwind, and Drizzle ORM.
+
+# Commands
+- Dev server: `pnpm dev`
+- Run tests: `pnpm test`
+- Lint: `pnpm lint`
+
+# Code Style
+- Use 2-space indentation
+- Prefer named exports
+- All API routes go in app/api/
+- Use server actions instead of API routes where possible</code></pre></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80c5-b386-c3df54570fdc" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="349ae9fa-8352-805d-b05d-fdad59624cc6" class="">명령어</h3></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-802c-a3b6-c327319de6c6" class="">/init : CLAUDE.md 파일을 생성</p></div><div style="display:contents" dir="auto"><p id="343ae9fa-8352-802c-b949-c8946cce5e9d" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="343ae9fa-8352-8048-9cb5-e96b2f326cbf" class=""><mark class="highlight-orange"><strong>Skill</strong></mark></h2></div><div style="display:contents" dir="auto"><hr id="349ae9fa-8352-8013-b24d-f15d577e5c73"/></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-80ea-932b-c1a923b32c19" class=""><code><strong>/&lt;name&gt;</strong></code>으로 트리거하는 호출 가능한 워크플로우</p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-8029-b8fd-fa140edf14d3" class="">
+</p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80e8-ad36-e0a651bfa941" class="">
+</p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-8001-a89f-d08f6711be8b" class="">
+</p></div><div style="display:contents" dir="auto"><p id="343ae9fa-8352-800b-94dc-d868a235827c" class="">프롬프트 엔지니어링<div class="indented"><div style="display:contents" dir="auto"><p id="343ae9fa-8352-8065-8598-cdceba06aafe" class="">AI 말걸기</p></div></div></p></div><div style="display:contents" dir="auto"><p id="343ae9fa-8352-8084-9e79-ec4110e2799d" class="">컨텍스트 엔지니어링<div class="indented"><div style="display:contents" dir="auto"><p id="343ae9fa-8352-809b-be99-c6dcfe317281" class="">프로젝트 상황을 AI에게 알려주기</p></div></div></p></div><div style="display:contents" dir="auto"><p id="343ae9fa-8352-80f8-ae8c-e4c604c51be2" class="">MCP + 스킬<div class="indented"><div style="display:contents" dir="auto"><p id="343ae9fa-8352-80d3-ad18-e09215ed68f3" class="">도구 연결 - AI가 쓸 수 있는 범위 정하기</p></div></div></p></div><div style="display:contents" dir="auto"><p id="343ae9fa-8352-8098-9bf5-d27fa383f935" class="">하네스 엔지니어링<div class="indented"><div style="display:contents" dir="auto"><p id="343ae9fa-8352-80e7-86fc-c70ec37f586a" class="">에이전트가 일하는 전체 환경을 설계</p></div></div></p></div><div style="display:contents" dir="auto"><p id="343ae9fa-8352-8041-aa3e-de729bc4c20d" class="">
+</p></div><div style="display:contents" dir="auto"><p id="343ae9fa-8352-80c6-ad08-e12d8d855167" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="345ae9fa-8352-8064-9484-edc978fbccc6" class=""><mark class="highlight-orange">Plan Mode</mark></h1></div><div style="display:contents" dir="auto"><hr id="348ae9fa-8352-8040-817c-d08270c59f9f"/></div><div style="display:contents" dir="auto"><blockquote id="345ae9fa-8352-8091-9976-fa744f5a8384" class="">프롬프트를 기반으로 읽기 전용 도구를 사용하여 코드베이스를 제안한 구현 방식에 대한 조사를 수행<div style="display:contents" dir="auto"><p id="348ae9fa-8352-80ac-b0f1-d84e1f678994" class="">Claude code가 직접 명확한 설명을 원하는 항목에 대해 질문을 하고 실행할 수 있는 계획을 사용자에게 반환</p></div></blockquote></div><div style="display:contents" dir="auto"><p id="348ae9fa-8352-80bc-955e-fdf417f3f268" class="">파일을 수정하거나 명령을 실행하는 대신, 코드 베이스를 분석하고 개발 계획을 세우는데 집중하는 모드</p></div><div style="display:contents" dir="auto"><p id="345ae9fa-8352-8088-92d1-e431e3a95855" class="">→ 파일 읽기 및 분석 + 코드베이스 이해 + 계획 수립 및 제시</p></div><div style="display:contents" dir="auto"><p id="345ae9fa-8352-8092-8eef-d7caefc536d6" class="">→ 파일 생성, 수정, 삭제 명령어 실행, Git 커밋은 하지 않는다. </p></div><div style="display:contents" dir="auto"><p id="345ae9fa-8352-80fc-bbcb-c4eab3ceaae9" class=""><mark class="highlight-orange">실제 코드를 작성하기 전에 연구와 분석을 거쳐 최적의 솔루션을 미리 도출하는 것</mark></p></div><div style="display:contents" dir="auto"><ol type="1" id="345ae9fa-8352-808a-ad4d-d3a4442424a4" class="numbered-list" start="1"><li>개발 시<div style="display:contents" dir="auto"><p id="345ae9fa-8352-80cc-b90b-ed48895635e6" class="">프로젝트 분석, 제약 조건, 분석 요구사항, 산출물을 구분해 프롬프트 작성</p></div><div style="display:contents" dir="auto"><pre id="345ae9fa-8352-8079-8f5f-d152378ff88e" class="code code-wrap"><code class="language-json" style="white-space:pre-wrap;word-break:break-all">&lt;project_analysis&gt;
+프로젝트명: E-commerce Platform Optimization
+현재 상태: 성능 이슈로 인한 사용자 이탈 증가
+목표: 로딩 시간 50% 단축, 사용자 경험 개선
+&lt;/project_analysis&gt;
+
+&lt;constraints&gt;
+- 기존 API 호환성 유지
+- 현재 팀 리소스: 3명 개발자, 2주 일정
+- 예산: 추가 인프라 비용 최소화
+- 기술 스택: React, Node.js, PostgreSQL
+&lt;/constraints&gt;
+
+&lt;analysis_requirements&gt;
+1. 현재 성능 병목 지점 식별
+2. 우선순위별 개선 방안 제시
+3. 위험도 평가 및 완화 전략
+4. 단계별 구현 로드맵
+5. 성공 지표 및 측정 방법
+&lt;/analysis_requirements&gt;
+
+&lt;deliverables&gt;
+- 현황 분석 보고서 (analysis-report.md)
+- 기술 아키텍처 개선 계획 (architecture-plan.md)
+- 구현 로드맵 (implementation-roadmap.md)
+- 테스트 전략 (testing-strategy.md)
+&lt;/deliverables&gt;
+
+이 모든 요구사항을 반영한 종합적인 분석과 계획을 수립해 줘.&quot;</code></pre></div></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="344ae9fa-8352-808d-8efa-d10092f2d2d7" class="numbered-list" start="2"><li>운영 시<div style="display:contents" dir="auto"><p id="345ae9fa-8352-80a1-bdf4-dccafdcb4815" class="">프로젝트의 컨텍스트를 분석 요청</p></div><div style="display:contents" dir="auto"><pre id="345ae9fa-8352-800c-a541-ee3f5926d1ed" class="code code-wrap"><code class="language-json" style="white-space:pre-wrap;word-break:break-all">&quot;먼저 이 프로젝트의 전체 컨텍스트를 파악해 줘:
+
+&lt;context_loading&gt;
+1. package.json과 의존성 분석
+2. 폴더 구조와 아키텍처 패턴 파악
+3. 기존 테스트 전략과 커버리지 확인
+4. 성능 관련 설정과 최적화 현황
+5. 문서화 상태와 코드 품질 평가
+&lt;/context_loading&gt;
+
+&lt;analysis_depth&gt;
+각 영역에 대해 다음 수준으로 분석:
+- 현재 상태 (As-Is)
+- 잠재적 문제점
+- 개선 기회
+- 권장 사항
+&lt;/analysis_depth&gt;
+
+컨텍스트 파악이 완료되면 향후 개발 작업을 위한
+마스터 플랜을 수립해 줘.&quot;</code></pre></div></li></ol></div><div style="display:contents" dir="auto"><p id="348ae9fa-8352-8076-a1b7-d5df50c526a6" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="348ae9fa-8352-80a2-9d74-cf52e5b1cd4d" class="">적용 방안</h3></div><div style="display:contents" dir="auto"><ul id="348ae9fa-8352-8091-a051-cf6b6b8cae73" class="bulleted-list"><li style="list-style-type:disc"><strong>Yes, auto-accept edits</strong><br/>수정 사항을 자동으로 승인하고 코드에 즉시 반영합니다. 하나하나 확인할 필요 없이 AI가 제안한 대로 바로 업데이트하고 싶을 때 선택합니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="348ae9fa-8352-80c9-9f0d-ffdc2fb7dbcf" class="bulleted-list"><li style="list-style-type:disc"><strong>Yes, manually approve edits</strong><br/>수정 사항을 수동으로 확인한 뒤 승인합니다. 코드가 어떻게 변하는지 직접 눈으로 확인(Diff 체크)하고 반영 여부를 결정하고 싶을 때 사용합니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="348ae9fa-8352-80a3-b3af-caeb90f10714" class="bulleted-list"><li style="list-style-type:disc"><strong>No, refine with Ultraplan on Claude Code on the web</strong><br/>현재 제안이 마음에 들지 않을 때 선택합니다. 웹 버전의 Claude에서 더 성능이 좋은 모델(Ultraplan 등)을 사용해 수정안을 다시 다듬고 싶다는 의미입니다.</li></ul></div><div style="display:contents" dir="auto"><ul id="348ae9fa-8352-8089-bfac-fd5f9b00eb42" class="bulleted-list"><li style="list-style-type:disc"><strong>Tell Claude what to change</strong><br/>Claude에게 구체적으로 어떤 부분을 다시 고쳐야 할지 지시를 내립니다. 특정 로직이 잘못되었거나 추가 요구사항이 있을 때 사용합니다.</li></ul></div><div style="display:contents" dir="auto"><p id="348ae9fa-8352-808e-b028-f93eacc0eb08" class="">
+</p></div><div style="display:contents" dir="auto"><p id="348ae9fa-8352-80a1-8005-ed70d70f6bf7" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="344ae9fa-8352-808e-9b4f-f6ac1e769988" class=""><mark class="highlight-orange">settings.json</mark></h1></div><div style="display:contents" dir="auto"><hr id="344ae9fa-8352-8031-a352-c1aa5d5f6919"/></div><div style="display:contents" dir="auto"><blockquote id="344ae9fa-8352-80e6-8540-e5fb1d09de04" class="">Claude Code 전역 설정</blockquote></div><div style="display:contents" dir="auto"><ul id="344ae9fa-8352-8087-befe-ef738b719dd0" class="bulleted-list"><li style="list-style-type:disc">claude 명령어 한번 실행해야 생김</li></ul></div><div style="display:contents" dir="auto"><h3 id="344ae9fa-8352-8092-9781-ff6cb3916e00" class="">위치</h3></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-803e-9c49-e1351ffa502e" class="">window = C:\Users\{사용자이름}\.claude 에 위치</p></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-8049-9959-c702bad8d856" class="">linux = /home/계정명/.claude 에 위치 </p></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-80df-ac11-ccd80d7b4d0b" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="344ae9fa-8352-80d1-b111-c6d6dc7c9d8f" class="">구조</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" integrity="sha512-whYhDwtTmlC/NpZlCr6PSsAaLOrfjVg/iXAnC4H/dtiHawpShhT2SlIMbpIhT/IL/NrpdMm+Hq2C13+VKpHTYw==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="344ae9fa-8352-804c-b59f-c9b9c6d9f5ad" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;autoUpdatesChannel&quot;: &quot;latest&quot;,
+  &quot;language&quot;: &quot;korean&quot;
+  &quot;hooks&quot;: {
+    &quot;PreToolUse&quot;: [
+      {
+        &quot;matcher&quot;: &quot;Bash&quot;,
+        &quot;hooks&quot;: [
+          {
+            &quot;type&quot;: &quot;command&quot;,
+            &quot;command&quot;: &quot;~/.claude/hooks/filter-test-output.sh&quot;
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-8061-a94a-d6f0ce024621" class="">autoUpdatesChannel : 자동 업데이트</p></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-8014-90e0-ec9ed5a7399a" class="">language : claude 표출 언어 설정</p></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-8076-a6d3-d427ed18b582" class="">hooks : <div class="indented"><div style="display:contents" dir="auto"><p id="344ae9fa-8352-8017-a1b8-ed401918ffda" class="">PreToolUser : 도구를 실행하기 직전 시점<div class="indented"><div style="display:contents" dir="auto"><p id="344ae9fa-8352-80a0-b97b-f69d05351b71" class="">matcher : 도구를 뭘쓰느냐</p></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-80b0-9079-e6a7d6a5e39b" class="">hooks : 실행할 작업<div class="indented"><div style="display:contents" dir="auto"><p id="344ae9fa-8352-8078-a640-c09731f8a3f7" class="">type : </p></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-803f-8f41-eb79798b3016" class="">command : </p></div></div></p></div></div></p></div></div></p></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-801f-8e09-c6ef6e5c447d" class=""><mark class="highlight-orange">filter-test-output.sh</mark><div class="indented"><div style="display:contents" dir="auto"><p id="344ae9fa-8352-8009-b411-d42d7623bc0c" class="">클로드에서 표출하게되는 에러 코드를 줄여줘서 발생하는 토큰 수를 줄이는 방법</p></div><div style="display:contents" dir="auto"><pre id="344ae9fa-8352-8086-8e53-fb6a8cbaec7c" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">#!/bin/bash
+input=$(cat)
+cmd=$(echo &quot;$input&quot; | jq -r &#x27;.tool_input.command&#x27;)
+
+# 테스트 명령어 감지 (Javascript, Python, Go, Spring boot)
+if [[ &quot;$cmd&quot; =~ ^(npm test|pytest|go test|./mvnw test|./gradlew test|mvn test|gradle test) ]]; then
+
+  # Spring Boot (Maven/Gradle) 전용 필터
+  if [[ &quot;$cmd&quot; =~ ^(./mvnw|mvn|./gradlew|gradle) ]]; then
+    filtered_cmd=&quot;$cmd 2&gt;&amp;1 | grep -A 10 -E &#x27;(FAILED|ERROR|Tests run.*Failures|BUILD FAILURE|Caused by:|at .+\(.+\.java)&#x27; | head -150&quot;
+
+  # 기존 필터 (npm/pytest/go)
+  else
+    filtered_cmd=&quot;$cmd 2&gt;&amp;1 | grep -A 5 -E &#x27;(FAIL|ERROR|error:)&#x27; | head -100&quot;
+  fi
+
+  echo &quot;{\&quot;hookSpecificOutput\&quot;:{\&quot;hookEventName\&quot;:\&quot;PreToolUse\&quot;,\&quot;permissionDecision\&quot;:\&quot;allow\&quot;,\&quot;updatedInput\&quot;:{\&quot;command\&quot;:\&quot;$filtered_cmd\&quot;}}}&quot;
+else
+  echo &quot;{}&quot;
+fi</code></pre></div><div style="display:contents" dir="auto"><pre id="344ae9fa-8352-80b0-b84e-c9dc30eb0048" class="code code-wrap"><code class="language-json" style="white-space:pre-wrap;word-break:break-all">{
+  &quot;hookSpecificOutput&quot;: {           // 1. 훅 답장 시작합니다!
+    &quot;hookEventName&quot;: &quot;PreToolUse&quot;,  // 2. 실행 직전 상황에 대한 보고고요,
+    &quot;permissionDecision&quot;: &quot;allow&quot;,  // 3. 실행은 허가(allow)하겠습니다.
+    &quot;updatedInput&quot;: {               // 4. 단, 입력값은 이걸로 바꿔주세요:
+      &quot;command&quot;: &quot;$filtered_cmd&quot;    // 5. 명령어(command) 자리에 이 필터링된 내용을 넣으세요!
+    }
+  }
+}</code></pre></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-800a-b92e-fd4df1119583" class="">즉 클로드가 실행하려고한 실제 명령어인 &quot;./gradlew test”를 &quot;./gradlew test 2&gt;&amp;1 | grep -A 10 -E &#x27;(FAILED|ERROR|...)&#x27; | head -150”</p></div><div style="display:contents" dir="auto"><p id="344ae9fa-8352-8028-8899-ee49a8b866ef" class="">로 실행하라는 내용</p></div></div></p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80b9-84e9-d6e7b3c709c0" class="">
+</p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80df-8e57-f1ce5298b3ed" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="344ae9fa-8352-80ca-a5e6-d60af9b9eb64" class=""><mark class="highlight-orange">사용자 정의 명령어 만들기</mark></h1></div><div style="display:contents" dir="auto"><hr id="349ae9fa-8352-802b-b291-d0473b84ee40"/></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80bd-8ea9-f4c1a1546467" class="">.claude 폴더 안에<div class="indented"><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80b3-b944-ef75298da9ad" class="">command</p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-803b-b331-c30da33374c4" class="">XX.md 파일 생성 ← XX 는 실행할 명령 이름이 됨</p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80de-97f0-de8e4aa21b0c" class="">
+</p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-805d-bbec-cabcf45b509a" class="">audit.md 라면 /autit 라는 명령어로 실행할 수 있게 됨</p></div><div style="display:contents" dir="auto"><pre id="349ae9fa-8352-8080-a566-e144eaa7f047" class="code code-wrap"><code class="language-json" style="white-space:pre-wrap;word-break:break-all">Your goal is to update any vulnerable dependencies.
+
+Do the following:
+1. Run  &#x27;npm audit&#x27; to find vulnerable installed packages in this project
+2. Run &#x27;npm audit fix&#x27; to apply updates
+3. Run tests and verify the updates didn&#x27;t break anything</code></pre></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-8087-b051-e0c705f45fcf" class="">/write_tests 뒤에 특정 파일 이름을 입력(혹은 경로) 하게되면 $ARGUMENTS 에 전달된다.</p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-8065-9ca5-d34b4e106800" class="">그런 다음 파일 경로를 지정하여 이 명령을 실행할 수 있다. <code><strong>/write_tests the use-auth.ts file in the hooks directory</strong></code></p></div><div style="display:contents" dir="auto"><p id="349ae9fa-8352-80ef-8f31-d897c4076406" class="">인수는 파일 경로일 필요는 없으며, 클로드에게 작업에 대한 맥락과 방향을 제공하기 위해 전달하려는 모든 문자열을 사용할 수 있다.</p></div><div style="display:contents" dir="auto"><pre id="349ae9fa-8352-80b9-ad91-ef1eb5544103" class="code code-wrap"><code class="language-json" style="white-space:pre-wrap;word-break:break-all">Write comprehensive tests for: $ARGUMENTS
+
+Testing conventions:
+* Use Vitests with React Testing Library
+* Place test files in a __tests__ directory in the same folder as the source file
+* Name test files as [filename].test.ts(x)
+
+Coverage:
+* Test happy paths
+* Test edge cases
+* Test error states
+* Focus on testing behavior and public API&#x27;s rather than implementation details.</code></pre></div></div></p></div><div style="display:contents" dir="auto"><p id="34fae9fa-8352-80cc-8d74-e8538867aa22" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="34fae9fa-8352-8009-9fea-f50d2ea61184" class="">보안 사항</h1></div><div style="display:contents" dir="auto"><hr id="34fae9fa-8352-807b-a89c-f4cbfe1f42c9"/></div><div style="display:contents" dir="auto"><p id="34fae9fa-8352-80aa-92dc-d6ca285ce255" class="">스크립트에 <strong>상대 경로 대신 절대 경로</strong>를 사용</p></div><div style="display:contents" dir="auto"><p id="34fae9fa-8352-80e1-a2d9-c7194ca21ba7" class="">이는 <a href="https://attack.mitre.org/techniques/T1574/007/">경로 가로채기</a> 및 <a href="https://owasp.org/www-community/attacks/Binary_planting">바이너리 심기</a> 공격을 방지하기 위해서<div class="indented"><div style="display:contents" dir="auto"><p id="34fae9fa-8352-80fe-a535-ce249e581d84" class=""><mark class="highlight-orange">$PWD 를 사용</mark></p></div></div></p></div><div style="display:contents" dir="auto"><p id="34fae9fa-8352-80c8-8bbe-e8ca55e8c340" class="">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
